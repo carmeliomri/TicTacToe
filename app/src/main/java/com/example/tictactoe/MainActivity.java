@@ -1,7 +1,9 @@
 package com.example.tictactoe;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -71,8 +73,51 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    private void endGame() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+    private boolean isWinner() {
+        //if there are 3  equal elements in row 0 return TRUE
+        if (board[0][0] == board[0][1] && (board[0][0] == board[0][2]))
+        {
+            return true;
+        }
+        if (board[1][0] == board[1][1] && (board[1][0] == board[1][2]))
+        {
+            return true;
+        }
+        if (board[2][0] == board[2][1] && (board[2][0] == board[2][2]))
+        {
+            return true;
+        }
+        //if there are 3  equal elements in col 0 return TRUE
+        //if there are 3  equal elements in col 1 return TRUE
+        //if there are 3  equal elements in col 2 return TRUE
+        if (board[0][0] == board[1][0] && (board[0][0] == board[2][0]))
+        {
+            return true;
+        }
+        if (board[0][1] == board[1][1] && (board[0][1] == board[2][1]))
+        {
+            return true;
+        }
+        if (board[0][2] == board[1][2] && (board[0][0] == board[2][2]))
+        {
+            return true;
+        }
+        //alahson
+        if (board[0][0] == board[1][1] && (board[0][0] == board[2][2]))
+        {
+            return true;
+        }
+        if (board[0][2] == board[1][1] && (board[0][0] == board[2][0]))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void endGame(String message) {
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(this);
         builder.setTitle("More Info");
         String msg = "This is the message body";
         builder.setMessage(msg);
