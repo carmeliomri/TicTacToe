@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        onNewGame();
     }
 
     private void onNewGame() {
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         for (int row = 0; row < 3; row++)
             for (int col = 0; col < 3; col++)
                 board[row][col] = new String();
-        turn = "x";
+        turn = "X";
         count = 0;
     }
 
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         if (board[row][col].equals("")) {
             board[row][col] = turn;
             Button btn = findViewById(id);
+            Log.e("zzzz", turn);
             btn.setText(turn);
             onTurnEnd();
 
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 endGame("Tie");
             else {
                 turn = (turn.equals("X") ? "O" : "X");
+                Log.e("XXXX", turn);
             }
         }
     }
@@ -118,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
     private void endGame(String message) {
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
-        builder.setTitle("More Info");
-        String msg = "This is the message body";
+        builder.setTitle("Game Over");
+        String msg = turn + " Won";
         builder.setMessage(msg);
         builder.setPositiveButton("EXIT", new DialogInterface.OnClickListener() {
             @Override
