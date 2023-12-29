@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         {
             return true;
         }
-        if (board[0][2] == board[1][1] && (board[0][0] == board[2][0]))
+        if (board[0][2] == board[1][1] && (board[0][2] == board[2][0]))
         {
             return true;
         }
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
         builder.setTitle("Game Over");
-        String msg = turn + " Won";
+        String msg = message;
         builder.setMessage(msg);
         builder.setPositiveButton("EXIT", new DialogInterface.OnClickListener() {
             @Override
